@@ -3,12 +3,13 @@
 class AbstractMelonOrder():
     """"an abstract melon class"""
 
-    def __init__(self, species, qty, tax):
+    def __init__(self, species, qty, order_type, tax):
         """Initialize melon order attributes."""
         self.species = species
         self.qty = qty
-        self.shipped = False 
+        self.order_type = order_type
         self.tax = tax 
+        self.shipped = False 
         
     def get_total(self):
         """Calculate price, including tax."""
@@ -28,11 +29,9 @@ class DomesticMelonOrder(AbstractMelonOrder):
 
     def __init__(self, species, qty):
         """Initialize melon order attributes."""
-        self.species = species
-        self.qty = qty
+        super().__init__(species, qty, 'domestic', 0.08)
         self.shipped = False 
-        self.order_type = "domestic"
-        self.tax = 0.08
+        
 
     def mark_shipped(self):
         """Record the fact than an order has been shipped."""

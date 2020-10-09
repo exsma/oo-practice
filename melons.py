@@ -71,3 +71,18 @@ class InternationalMelonOrder(AbstractMelonOrder):
         """Return the country code."""
 
         return self.country_code
+# Create a class GovernmentMelonOrder that inherits from AbstractMelonOrder.
+# There will be no tax on government orders.
+# The GovernmentMelonOrder class should include:
+# a variable passed_inspection which is False until a successful inspection occurs
+# a method mark_inspection(passed) that takes a Boolean input, passed, 
+# and updates whether or not the melon has passed inspection. 
+# This method should update the attribute passed_inspection.
+class GovernmentMelonOrder(AbstractMelonOrder):
+
+    def __init__ (self, species, qty):
+        self.species = species
+        self.qty = qty
+        self.shipped = False 
+        self.tax = 0 
+

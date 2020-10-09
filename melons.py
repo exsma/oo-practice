@@ -85,4 +85,8 @@ class GovernmentMelonOrder(AbstractMelonOrder):
         self.qty = qty
         self.shipped = False 
         self.tax = 0 
+        self.passed_inspection = False
+
+    def mark_inspection(self, passed):
+        self.passed_inspection = passed
 

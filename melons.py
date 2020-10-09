@@ -10,6 +10,17 @@ class AbstractMelonOrder():
         self.shipped = False 
         self.tax = tax 
         
+    def get_total(self):
+        """Calculate price, including tax."""
+        
+        base_price = 5
+        
+        if self.species == 'Christmas':
+            base_price * 1.5
+        
+        total = (1 + self.tax) * self.qty * base_price
+
+        return total
 
 
 class DomesticMelonOrder(AbstractMelonOrder):
@@ -22,14 +33,6 @@ class DomesticMelonOrder(AbstractMelonOrder):
         self.shipped = False 
         self.order_type = "domestic"
         self.tax = 0.08
-
-    def get_total(self):
-        """Calculate price, including tax."""
-
-        base_price = 5
-        total = (1 + self.tax) * self.qty * base_price
-
-        return total
 
     def mark_shipped(self):
         """Record the fact than an order has been shipped."""
@@ -52,8 +55,10 @@ class InternationalMelonOrder(AbstractMelonOrder):
     def get_total(self):
         """Calculate price, including tax."""
 
-        base_price = 5
-        total = (1 + self.tax) * self.qty * base_price
+        total = super().get_total(self)
+        
+        if self.qty < 10:
+            total + 3.00
 
         return total
 
